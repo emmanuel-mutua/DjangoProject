@@ -1,16 +1,16 @@
 from django.db import models
+from courses.models import Course
 
-# Create your models here.
 class Class(models.Model):
-    class_id = models.PositiveSmallIntegerField()
-    class_number = models.PositiveSmallIntegerField()
-    class_trainer_name = models.CharField(max_length=20)
-    class_location = models.CharField(max_length=20)
-    class_capacity = models.PositiveSmallIntegerField()
-    class_level = models.CharField(max_length=20)
-    class_name = models.CharField(max_length=15)
-    class_days = models.PositiveSmallIntegerField()
-    class_student_names = models.TextField()
-    class_course = models.CharField(max_length=25)
+    class_name = models.CharField(max_length=100)
+    class_code = models.CharField(max_length=50)
+    room_allocation = models.CharField(max_length=100)
+    no_of_tables = models.PositiveSmallIntegerField()
+    no_of_students = models.PositiveSmallIntegerField()
+    class_representative = models.CharField(max_length=100)
+    class_goals = models.TextField()
+    class_meeting = models.CharField(max_length=100)
+    period_entity = models.CharField(max_length=100)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
     def __str__(self):
-        return f"{self.class_id} {self.class_capacity}"
+        return self.class_name
