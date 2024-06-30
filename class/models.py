@@ -1,5 +1,5 @@
 from django.db import models
-from courses.models import Course
+# from courses.models import Course
 
 class Class(models.Model):
     class_name = models.CharField(max_length=100)
@@ -11,6 +11,6 @@ class Class(models.Model):
     class_goals = models.TextField()
     class_meeting = models.CharField(max_length=100)
     period_entity = models.CharField(max_length=100)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
     def __str__(self):
         return self.class_name

@@ -11,11 +11,10 @@ class Student(models.Model):
     country = models.CharField(max_length=20)
     bio = models.TextField()
     age=models.SmallIntegerField()
-    nationality =models.CharField()
-    gender =models.CharField()
-    id =models.AutoField()
-    course =models.CharField()
-    immediate_contact = models.CharField()
+    nationality =models.CharField(max_length=50)
+    gender =models.CharField(max_length=50)
+    course =models.CharField(max_length=40)
+    immediate_contact = models.CharField(max_length=20)
     enrollment_date =models
 
     def __str__(self):
