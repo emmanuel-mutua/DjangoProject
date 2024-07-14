@@ -21,11 +21,11 @@ class StudentListView(APIView):
         serializer=StudentSerializer(students,many=True)
         return Response(serializer.data)
 
-# class SchoolClassListView(APIView):
-#     def get(self,request):
-#         schoolclasses=SchoolClass.objects.all()
-#         serializer=SchoolClassSerializer(schoolclasses,many=True)
-#         return Response(serializer.data)
+class SchoolClassListView(APIView):
+    def get(self,request):
+        schoolclasses=SchoolClass.objects.all()
+        serializer=SchoolClassSerializer(schoolclasses,many=True)
+        return Response(serializer.data)
     
 class TeacherListView(APIView):
     def get(self,request):

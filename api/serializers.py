@@ -1,18 +1,4 @@
-# from rest_framework import serializers
-# from student.models import Student
-# from class.models import SchoolClass
 
-
-# class StudentSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model=Student
-#         fields="__all__"
-
-# class ClassSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model =SchoolClass
-#         fields ="__all__"
-# serializers.py
 
 from rest_framework import serializers
 from student.models import Student
@@ -26,10 +12,10 @@ class StudentSerializer(serializers.ModelSerializer):
         model = Student
         fields = "__all__"
 
-# class SchoolClassSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = SchoolClass  
-#         fields = "__all__"
+class SchoolClassSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SchoolClass  
+        fields = "__all__"
 
 
 class TeacherSerializer(serializers.ModelSerializer):
