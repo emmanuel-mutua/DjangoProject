@@ -1,6 +1,8 @@
 from django.db import models
+# from student.models import Student
 
 class Course(models.Model):
+    # student_id = models.ForeignKey('student.Student', on_delete=models.CASCADE, default=1)
     course_name = models.CharField(max_length=100)
     course_trainer = models.CharField(max_length=100)
     course_objective = models.CharField(max_length=255)

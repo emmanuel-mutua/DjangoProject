@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 from django.db import models
 class Student(models.Model):
+    Student_id =models.IntegerField(default=1)
     first_name =models.CharField(max_length=20)
     last_name =models.CharField(max_length=20)
     email =models.EmailField()
