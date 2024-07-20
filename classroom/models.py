@@ -2,7 +2,7 @@ from django.db import models
 # from courses.models import Course
 from student.models import Student
 
-class SchoolClass(models.Model):
+class ClassRoom(models.Model):
     student_id = models.ForeignKey('student.Student', on_delete=models.CASCADE, default=1)
     class_name = models.CharField(max_length=100)
     class_code = models.CharField(max_length=50)
