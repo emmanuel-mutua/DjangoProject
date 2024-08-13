@@ -3,6 +3,7 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+from classroom.models import ClassRoom
 from student.models import Student
 from .serializers import StudentSerializer
 from teacher.models import Teacher
@@ -10,12 +11,52 @@ from .serializers import TeacherSerializer
 # Ensure ClassRoom model and serializer are properly defined
 # from .models import ClassRoom
 # from .serializers import ClassRoomSerializer
-from course.models import Course
 from .serializers import CourseSerializer
 from classperiod.models import ClassPeriod
 from .serializers import ClassPeriodSerializer
 
+from django.shortcuts import render
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status
+from student.models import Student
+from .serializers import StudentSerializer
+from teacher.models import Teacher
+from .serializers import TeacherSerializer
+from course.models import Course
+from .serializers import CourseSerializer
+from classperiod.models import ClassPeriod
+from .serializers import ClassPeriodSerializer
+from .serializers import TimetableSerializer
+from timetable.models import Timetable  
+
 # Create your views here.
+
+
+class TeacherAssignmentView(APIView):
+    def post(self, request):
+        teacher_id = request.data.get("teacher_id")
+        course_id = request.data.get("course_id")
+        teacher = Teacher.objects.get(id=teacher_id)
+        course = Course.objects.get(id=course_id)
+        teacher.courses.add(course)
+        return Response({"status": "Course assigned to teacher"}, status=status.HTTP_202_ACCEPTED)
+
+class TeacherClassAssignmentView(APIView):
+    def post(self, request):
+        teacher_id = request.data.get("teacher_id")
+        class_id = request.data.get("class_id")
+        teacher = Teacher.objects.get(id=teacher_id)
+        classroom = ClassRoom.objects.get(id=class_id)
+        teacher.classrooms.add(classroom)
+        return Response({"status": "Class assigned to teacher"}, status=status.HTTP_202_ACCEPTED)
+
+class WeeklyTimetableView(APIView):
+    def get(self, request):
+        timetable = Timetable.objects.all()
+        serializer = TimetableSerializer(timetable, many=True)  
+        return Response(serializer.data)
+
 class StudentListView(APIView):
     def get(self, request):
         students = Student.objects.all()
